@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aurora Signer</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <canvas id="space-canvas"></canvas>
+    <div class="main-container">
+        <div class="left-panel">
+            <div class="file-upload-area">
+            <form id="ASrequest" enctype="multipart/form-data" class="signer-form">
+                <div class="form-field">
+                        <label for="p12" class="form-label">P12 File:</label>
+                    <div class="file-input-wrapper">
+                        <input type="file" id="p12" name="p12" accept=".p12" required />
+                            <button type="button" class="file-button">Choose P12 File</button>
+                            <span class="file-name-display"></span>
+                        </div>
+                    </div>
+                <div class="form-field">
+                        <label for="mobileprovision" class="form-label">Mobile Provision:</label>
+                     <div class="file-input-wrapper">
+                        <input type="file" id="mobileprovision" name="mp" accept=".mobileprovision" required />
+                            <button type="button" class="file-button">Choose Mobile Provision</button>
+                            <span class="file-name-display"></span>
+                </div>
+                    </div>
+                    <div class="form-field">
+                        <label for="ipa" class="form-label">IPA File:</label>
+                        <div class="file-input-wrapper">
+                            <input type="file" id="ipa" name="ipa" accept=".ipa" required />
+                            <button type="button" class="file-button">Choose IPA File</button>
+                            <span class="file-name-display"></span>
+                        </div>
+                    </div>
+                    <div class="form-field">
+                        <label for="password" class="form-label">P12 Password:</label>
+                        <div class="password-input-wrapper">
+                            <input type="password" id="password" name="password" class="form-control" required autocomplete="new-password" />
+                            <i class="fas fa-eye" id="togglePassword"></i>
+                        </div>
+                    </div>
+                    <button type="submit" class="submit-button">Sign IPA</button>
+                </form>
+            </div>
+        </div>
+        <div class="right-panel">
+            <h1>Simple, private IPA signing</h1>
+            <p>Aurora Signer is <strong>MONEY POX</strong></p>
+            <div id="result" class="signer-result"></div>
+            <div id="loader" class="signer-loader hidden"></div>
+            <p id="linkDuration" class="link-duration-info"></p>
+            <div id="progressBarContainer" class="progress-bar-container hidden">
+                <div id="progressBar" class="progress-bar-fill"></div>
+                <div id="progressText" class="progress-bar-text">0%</div>
+            </div>
+        </div>
+                </div>
+
+    <footer class="site-footer">
+        <a href="https://discord.gg/mXmB47xEYx" target="_blank">Discord</a>
+    </footer>
+
+    <script src="js/database.js"></script> 
+    <script src="js/admin.js"></script> 
+    <script src="js/signer-logic.js"></script>
+    <script type="module">
+      import SpaceTravel from "https://unpkg.com/space-travel?module";
+      new SpaceTravel({
+        canvas: document.getElementById("space-canvas"),
+        backgroundColor: 0x08000f
+      }).start();
+    </script>
+</body>
+</html>
