@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aurora Signer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -13,6 +16,9 @@
             <a href="#" class="navbar-logo">
                 <img src="images/logo.png" alt="Logo">
             </a>
+            <div class="menu-icon">
+                <i class="fas fa-bars"></i>
+            </div>
             <ul class="nav-menu">
                 <li class="nav-item">
                     <a href="#" class="nav-links">Documentation</a>
@@ -80,10 +86,16 @@
     <script src="js/main.js"></script> 
     <script type="module">
       import SpaceTravel from "https://unpkg.com/space-travel?module";
-      new SpaceTravel({
+      const spaceTravel = new SpaceTravel({
         canvas: document.getElementById("space-canvas"),
         backgroundColor: 0x08000f
-      }).start();
+      });
+
+      spaceTravel.start();
+
+      window.addEventListener('resize', () => {
+        spaceTravel.resize();
+      });
     </script>
 </body>
 </html>

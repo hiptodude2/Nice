@@ -1,49 +1,80 @@
-// Basic mobile menu toggle functionality
-document.addEventListener('DOMContentLoaded', function() {
-    document.querySelector('.mobile-menu').addEventListener('click', function() {
-        document.querySelector('.nav-links').style.display = 
-            document.querySelector('.nav-links').style.display === 'flex' ? 'none' : 'flex';
+document.addEventListener('DOMContentLoaded', () => {
+    // Hamburger menu toggle
+    const menuIcon = document.querySelector('.menu-icon');
+    const navMenu = document.querySelector('.nav-menu');
+
+    if (menuIcon && navMenu) {
+        menuIcon.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            // Optional: Toggle icon between bars and an X
+            const icon = menuIcon.querySelector('i');
+            if (icon) {
+                icon.classList.toggle('fa-bars');
+                icon.classList.toggle('fa-times');
+            }
+        });
+    }
+
+    // Close mobile menu when a nav link is clicked
+    document.querySelectorAll('.nav-links').forEach(link => {
+        link.addEventListener('click', () => {
+            if (navMenu.classList.contains('active')) {
+                navMenu.classList.remove('active');
+                const icon = menuIcon.querySelector('i');
+                if (icon) {
+                    icon.classList.add('fa-bars');
+                    icon.classList.remove('fa-times');
+                }
+            }
+        });
     });
 
-    const createAuroraEffect = () => {
-        const aurora = document.createElement('div');
-        aurora.classList.add('aurora-effect');
-        aurora.style.position = 'absolute';
-        aurora.style.borderRadius = '50%';
-        aurora.style.filter = 'blur(60px)';
-        aurora.style.opacity = '0';
-        
-        const size = Math.random() * 100 + 50;
-        aurora.style.width = `${size}px`;
-        aurora.style.height = `${size}px`;
-        
-        const colors = ['#8A2BE2', '#FF1493', '#00BFFF', '#FF69B4'];
-        aurora.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-        
-        aurora.style.left = `${Math.random() * 100}%`;
-        aurora.style.top = `${Math.random() * 100}%`;
-        
-        document.querySelector('.hero').appendChild(aurora);
-        
-        let opacity = 0;
-        const fadeIn = setInterval(() => {
-            if (opacity >= 0.3) {
-                clearInterval(fadeIn);
-                setTimeout(() => {
-                    const fadeOut = setInterval(() => {
-                        if (opacity <= 0) {
-                            clearInterval(fadeOut);
-                            aurora.remove();
-                        }
-                        opacity -= 0.01;
-                        aurora.style.opacity = opacity;
-                    }, 50);
-                }, Math.random() * 3000 + 2000);
+    // Custom file input button
+    document.querySelectorAll('.file-input-wrapper input[type="file"]').forEach(input => {
+        const wrapper = input.parentElement;
+        const button = wrapper.querySelector('.file-button');
+        const fileNameDisplay = wrapper.querySelector('.file-name-display');
+
+        if (button) {
+            button.addEventListener('click', () => {
+                input.click();
+            });
+        }
+
+        input.addEventListener('change', () => {
+            if (input.files.length > 0) {
+                if (fileNameDisplay) {
+                    fileNameDisplay.textContent = input.files[0].name;
+                }
+            } else {
+                if (fileNameDisplay) {
+                    fileNameDisplay.textContent = '';
+                }
             }
-            opacity += 0.01;
-            aurora.style.opacity = opacity;
-        }, 50);
-    };
-    
-    setInterval(createAuroraEffect, 1000);
+        });
+    });
+
+    // Password visibility toggle
+    const togglePassword = document.querySelector('#togglePassword');
+    const passwordInput = document.querySelector('#password');
+
+    if (togglePassword && passwordInput) {
+        togglePassword.addEventListener('click', () => {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            togglePassword.classList.toggle('fa-eye');
+            togglePassword.classList.toggle('fa-eye-slash');
+        });
+    }
+
+    // Form submission logic (assuming you have a form with id="ASrequest")
+    const form = document.getElementById('ASrequest');
+    if (form) {
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            // Implement your form submission, loader, and progress bar logic here
+            // This part is left for you to connect to your backend API
+            console.log('Form submitted');
+        });
+    }
 }); 

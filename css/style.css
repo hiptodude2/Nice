@@ -1,8 +1,7 @@
-/* General Reset & Body Styling */
+/* --- General & Body Styling --- */
 body {
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    /* The background is now handled by the canvas */
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     color: #e0e0e0;
     display: flex;
     flex-direction: column;
@@ -11,7 +10,9 @@ body {
     min-height: 100vh;
     padding-top: 80px;
     box-sizing: border-box;
-    font-size: 1em;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 #space-canvas {
@@ -23,175 +24,12 @@ body {
     z-index: -1;
 }
 
-/* Header and Footer Styling */
-.site-header, .site-footer {
-    width: 100%;
-    text-align: center;
-    padding: 10px 0;
-    position: relative;
-    z-index: 1;
-}
-
-.site-header a, .site-footer a {
-    color: #9370db;
-    text-decoration: none;
-    font-size: 1em;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    display: flex;
-    gap: 40px;
-    position: relative;
-    z-index: 1;
-}
-
-/* Main container for the signer box */
-.main-container {
-    background: rgba(30, 25, 40, 0.6);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-radius: 20px;
-    padding: 40px;
-    width: 90%;
-    max-width: 900px;
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    display: flex;
-    gap: 40px;
-}
-
-.left-panel, .right-panel {
-    flex: 1;
-}
-
-/* Right panel styling */
-.right-panel h1 {
-    font-size: 2.8em;
-    color: #f0abfc;
-    margin-top: 0;
-    line-height: 1.2;
-}
-
-.right-panel p {
-    font-size: 1.1em;
-    line-height: 1.6;
-    color: #555; /* Faded text color */
-}
-
-strong {
-    color: #777;
-    font-weight: 600;
-}
-
-/* Box for file inputs */
-.file-upload-area {
-    border: none;
-    padding: 0;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-/* General form styling */
-.signer-form .form-field {
-    margin-bottom: 25px;
-    text-align: left;
-}
-
-.signer-form .form-label {
-    display: block;
-    margin-bottom: 8px;
-    color: #ccc;
-    font-weight: 500;
-    font-size: 0.9em;
-}
-
-.signer-form .form-control,
-.signer-form .file-button {
-    width: 100%;
-    padding: 12px;
-    border-radius: 10px;
-    border: 1px solid #333;
-    background-color: #2c2c2c;
-    color: #fff;
-    box-sizing: border-box;
-    font-size: 1em;
-}
-
-.signer-form .file-input-wrapper {
-    position: relative;
-    width: 100%;
-}
-
-.signer-form input[type="file"] {
-    opacity: 0;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    cursor: pointer;
-}
-
-.signer-form .file-button {
-    background-color: #9370db;
-    border: none;
-    cursor: pointer;
-    text-align: center;
-    display: block;
-    transition: background-color 0.3s;
-}
-
-.signer-form .file-button:hover {
-    background-color: #a380eb;
-}
-
-.signer-form .file-name-display {
-    display: none;
-}
-
-/* Password input specific styling */
-.password-input-wrapper {
-    position: relative;
-    display: flex;
-    align-items: center;
-}
-.password-input-wrapper input {
-    padding-right: 40px;
-}
-.password-input-wrapper .fa-eye {
-    position: absolute;
-    right: 15px;
-    cursor: pointer;
-    color: #888;
-}
-
-/* Submit button */
-.submit-button {
-    background-color: #9370db;
-    color: white;
-    padding: 15px 20px;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    font-size: 1.1em;
-    width: 100%;
-    margin-top: 10px;
-    transition: background-color 0.3s;
-}
-
-.submit-button:hover {
-    background-color: #a380eb;
-}
-
-/* Hidden elements */
-.hidden {
-    display: none;
-}
-
-/* Navbar Styles */
+/* --- Navbar --- */
 .navbar {
-    background: rgba(30, 25, 40, 0.6);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(10, 5, 20, 0.5);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     padding: 1rem 2rem;
     position: fixed;
     top: 0;
@@ -212,12 +50,17 @@ strong {
 
 .navbar-logo img {
     height: 40px;
+    transition: transform 0.3s ease;
+}
+
+.navbar-logo:hover img {
+    transform: scale(1.05);
 }
 
 .nav-menu {
     list-style: none;
     display: flex;
-    gap: 2rem;
+    gap: 1rem;
     margin: 0;
     padding: 0;
 }
@@ -226,6 +69,7 @@ strong {
     color: #e0e0e0;
     text-decoration: none;
     font-size: 1rem;
+    font-weight: 500;
     padding: 0.5rem 1rem;
     border-radius: 8px;
     transition: background-color 0.3s ease, color 0.3s ease;
@@ -233,5 +77,234 @@ strong {
 
 .nav-links:hover {
     background-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+/* --- Main Content --- */
+.main-container {
+    background: rgba(20, 15, 30, 0.6);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-radius: 24px;
+    padding: 50px;
+    width: 90%;
+    max-width: 960px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    gap: 50px;
+}
+
+.left-panel, .right-panel {
+    flex: 1;
+}
+
+/* --- Right Panel --- */
+.right-panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.right-panel h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 0;
+    line-height: 1.2;
+    background: linear-gradient(45deg, #f0abfc, #9370db);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.right-panel p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: rgba(224, 224, 224, 0.8);
+    margin-top: 15px;
+}
+
+.right-panel p strong {
+    font-weight: 600;
+    color: #fff;
+}
+
+/* --- Form --- */
+.signer-form {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+}
+
+.signer-form .form-field {
+    margin-bottom: 20px;
+}
+
+.signer-form .form-label {
+    display: block;
+    margin-bottom: 8px;
+    color: #ccc;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.signer-form .file-button,
+.submit-button {
+    width: 100%;
+    padding: 14px;
+    border-radius: 10px;
+    border: none;
+    background: linear-gradient(45deg, #8a2be2, #c738d8);
+    color: #fff;
+    box-sizing: border-box;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(138, 43, 226, 0.3);
+}
+
+.signer-form .file-button:hover,
+.submit-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(138, 43, 226, 0.4);
+}
+
+.signer-form .file-input-wrapper {
+    position: relative;
+}
+
+.signer-form input[type="file"] {
+    display: none;
+}
+
+.signer-form .file-name-display {
     color: #f0abfc;
-} 
+    font-size: 0.9rem;
+    margin-top: 8px;
+    display: block;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* --- Password Field --- */
+.password-input-wrapper {
+    position: relative;
+}
+
+.signer-form .form-control {
+    width: 100%;
+    padding: 14px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background-color: rgba(0, 0, 0, 0.2);
+    color: #fff;
+    box-sizing: border-box;
+    font-size: 1rem;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.signer-form .form-control:focus {
+    outline: none;
+    border-color: #a380eb;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.password-input-wrapper i {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #888;
+    transition: color 0.3s ease;
+}
+
+.password-input-wrapper i:hover {
+    color: #ccc;
+}
+
+/* --- Footer --- */
+.site-footer {
+    width: 100%;
+    padding: 20px 0;
+    position: relative;
+    z-index: 1;
+    text-align: center;
+}
+
+.site-footer a {
+    color: #aaa;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.site-footer a:hover {
+    color: #fff;
+}
+
+/* --- Responsive & Mobile Menu --- */
+.menu-icon { display: none; }
+
+@media screen and (max-width: 992px) {
+    .main-container {
+        flex-direction: column;
+        padding: 40px;
+        gap: 40px;
+    }
+
+    .right-panel { text-align: center; }
+    .right-panel h1 { font-size: 2.8rem; }
+}
+
+@media screen and (max-width: 768px) {
+    body { padding-top: 70px; }
+    .navbar { padding: 0.8rem 1rem; }
+    .navbar-logo img { height: 35px; }
+
+    .nav-menu {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 67px;
+        left: 0;
+        background: rgba(20, 15, 30, 0.95);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 0.5rem 0;
+    }
+    .nav-menu.active { display: flex; }
+    .nav-item { width: 100%; text-align: center; }
+    .nav-links {
+        display: block;
+        padding: 1rem;
+        border-radius: 0;
+    }
+    .nav-links:hover { background-color: rgba(255, 255, 255, 0.05); }
+
+    .menu-icon {
+        display: block;
+        cursor: pointer;
+        font-size: 1.8rem;
+        color: #e0e0e0;
+    }
+
+    .main-container {
+        padding: 30px;
+        width: 95%;
+        gap: 30px;
+    }
+    .right-panel h1 { font-size: 2.2rem; }
+    .right-panel p { font-size: 1rem; }
+}
+
+/* Helper Classes */
+.hidden { display: none; } 
