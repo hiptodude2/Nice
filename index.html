@@ -8,6 +8,18 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="#" class="navbar-logo">
+                <img src="images/logo.png" alt="Logo">
+            </a>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#" class="nav-links">Documentation</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
     <canvas id="space-canvas"></canvas>
     <div class="main-container">
         <div class="left-panel">
@@ -65,9 +77,7 @@
         <a href="https://discord.gg/mXmB47xEYx" target="_blank">Discord</a>
     </footer>
 
-    <script src="js/database.js"></script> 
-    <script src="js/admin.js"></script> 
-    <script src="js/signer-logic.js"></script>
+    <script src="js/main.js"></script> 
     <script type="module">
       import SpaceTravel from "https://unpkg.com/space-travel?module";
       new SpaceTravel({
