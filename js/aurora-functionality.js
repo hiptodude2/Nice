@@ -132,7 +132,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 console.log("Sending signing request to API...");
                 console.log("User premium status:", currentUser.premium);
                 
-                const response = await fetch("https://api.cherrysideloading.xyz/sign", { // Updated to new domain
+                const response = await fetch("http://api.cherrysideloading.xyz/sign", { // Updated to use HTTP due to SSL issue
                     method: "POST",
                     body: formData
                 });

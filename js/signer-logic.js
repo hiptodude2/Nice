@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 formData.append('expiryDays', '7');
                 
                 // Make API request
-                const response = await fetch('https://api.cherrysideloading.xyz/sign', {
+                const response = await fetch('http://api.cherrysideloading.xyz/sign', {
                     method: 'POST',
                     body: formData
                 });

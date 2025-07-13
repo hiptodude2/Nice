@@ -1,3 +1,147 @@
+document.addEventListener('DOMContentLoaded', () => {
+    const loginModal = document.getElementById('loginModal');
+    const signupModal = document.getElementById('signupModal');
+    const authButton = document.getElementById('authButton');
+    const logoutButton = document.getElementById('logoutButton');
+    const userNavItem = document.getElementById('userNavItem');
+    const authNavItem = document.getElementById('authNavItem');
+    const userGreeting = document.getElementById('userGreeting');
+
+    const currentUser = db.getCurrentUser();
+    if (currentUser) {
+        updateUserNav(currentUser);
+    }
+
+    authButton.addEventListener('click', () => {
+        if (authButton.textContent === 'Login') {
+            openModal(loginModal);
+        } else {
+            openModal(signupModal);
+        }
+    });
+
+    logoutButton.addEventListener('click', () => {
+        db.logout();
+        toggleAuthNav(false);
+    });
+
+    document.querySelectorAll('.close').forEach(closeBtn => {
+        closeBtn.addEventListener('click', closeModals);
+    });
+
+    document.getElementById('showSignup').addEventListener('click', (e) => {
+        e.preventDefault();
+        closeModals();
+        openModal(signupModal);
+    });
+
+    document.getElementById('showLogin').addEventListener('click', (e) => {
+        e.preventDefault();
+        closeModals();
+        openModal(loginModal);
+    });
+
+    window.addEventListener('click', (event) => {
+        if (event.target === loginModal || event.target === signupModal) {
+            closeModals();
+        }
+    });
+
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const submitBtn = e.target.querySelector('.submit-button');
+        const originalText = submitBtn.textContent;
+        
+        submitBtn.textContent = 'Logging in...';
+        submitBtn.disabled = true;
+        
+        try {
+            const username = document.getElementById('loginUsername').value.trim();
+            const password = document.getElementById('loginPassword').value;
+            
+            if (!username || !password) {
+                alert('Please fill in all fields.');
+                return;
+            }
+            const user = await db.loginUser(username, password);
+            if (user) {
+                db.setCurrentUser(user);
+                updateUserNav(user);
+                closeModals();
+            } else {
+                alert('Login failed. Please check your credentials.');
+            }
+        } catch (error) {
+            console.error('Login error:', error);
+            alert('Login failed. Please try again.');
+        } finally {
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
+        }
+    });
+
+    document.getElementById('signupForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const submitBtn = e.target.querySelector('.submit-button');
+        const originalText = submitBtn.textContent;
+        
+        submitBtn.textContent = 'Signing up...';
+        submitBtn.disabled = true;
+        
+        try {
+            const username = document.getElementById('signupUsername').value.trim();
+            const password = document.getElementById('signupPassword').value;
+            
+            if (!username || !password) {
+                alert('Please fill in all fields.');
+                return;
+            }
+            
+            if (await db.registerUser(username, password)) {
+                alert('Signup successful! You may now log in.');
+                closeModals();
+                openModal(loginModal);
+            } else {
+                alert('Signup failed. Please try a different username.');
+            }
+        } catch (error) {
+            console.error('Signup error:', error);
+            alert('Signup failed. Please try again.');
+        } finally {
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
+        }
+    });
+
+    function toggleAuthNav(isLoggedIn) {
+        if (isLoggedIn) {
+            authNavItem.classList.add('hidden');
+            userNavItem.classList.remove('hidden');
+        } else {
+            authNavItem.classList.remove('hidden');
+            userNavItem.classList.add('hidden');
+            userGreeting.textContent = '';
+        }
+    }
+
+    function updateUserNav(user) {
+        userGreeting.textContent = `Welcome, ${user.username}`;
+        toggleAuthNav(true);
+    }
+
+    function openModal(modal) {
+        modal.classList.remove('hidden');
+    }
+
+    function closeModals() {
+        loginModal.classList.add('hidden');
+        signupModal.classList.add('hidden');
+        // Clear form fields
+        document.getElementById('loginForm').reset();
+        document.getElementById('signupForm').reset();
+    }
+});
+
 // Basic mobile menu toggle functionality
 document.addEventListener('DOMContentLoaded', function() {
     document.querySelector('.mobile-menu').addEventListener('click', function() {
