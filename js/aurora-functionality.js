@@ -132,7 +132,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 console.log("Sending signing request to API...");
                 console.log("User premium status:", currentUser.premium);
                 
-                const response = await fetch("https://api.aurorasigner.xyz/sign", { // Ensure this endpoint is correct
+                const response = await fetch("https://api.cherrysideloading.xyz/sign", { // Updated to new domain
                     method: "POST",
                     body: formData
                 });
